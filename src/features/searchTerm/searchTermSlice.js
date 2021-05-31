@@ -17,3 +17,33 @@ Extra Credit:
 */
 
 
+export const setSearchTerm = (term) => {
+    return {
+        type: 'search/setSearchTerm',
+        payload: term
+    }
+}
+
+export const clearSearchTerm = (term) => {
+    return {
+        type: 'search/clearSearchTerm'
+    }
+}
+
+function getFilteredItems(items, searchTerm) {
+    return items.filter(items => items.name.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
+
+export const searchTermReducer = (state = '', action) => {
+    switch (action.type) {
+        case 'search/setSearchTerm':
+            return action.payload;
+
+        case 'search/clearSearchTerm':
+            return '';
+
+        default:
+            return state;
+    }
+}
